@@ -1,0 +1,46 @@
+{
+	"sources" : 
+	[
+		{
+			"file" : "C:/Users/Никита/CLionProjects/strategia/cmake-build-debug/_deps/cpm-subbuild/CMakeFiles/cpm-populate"
+		},
+		{
+			"file" : "C:/Users/Никита/CLionProjects/strategia/cmake-build-debug/_deps/cpm-subbuild/CMakeFiles/cpm-populate.rule"
+		},
+		{
+			"file" : "C:/Users/Никита/CLionProjects/strategia/cmake-build-debug/_deps/cpm-subbuild/CMakeFiles/cpm-populate-complete.rule"
+		},
+		{
+			"file" : "C:/Users/Никита/CLionProjects/strategia/cmake-build-debug/_deps/cpm-subbuild/cpm-populate-prefix/src/cpm-populate-stamp/cpm-populate-build.rule"
+		},
+		{
+			"file" : "C:/Users/Никита/CLionProjects/strategia/cmake-build-debug/_deps/cpm-subbuild/cpm-populate-prefix/src/cpm-populate-stamp/cpm-populate-configure.rule"
+		},
+		{
+			"file" : "C:/Users/Никита/CLionProjects/strategia/cmake-build-debug/_deps/cpm-subbuild/cpm-populate-prefix/src/cpm-populate-stamp/cpm-populate-download.rule"
+		},
+		{
+			"file" : "C:/Users/Никита/CLionProjects/strategia/cmake-build-debug/_deps/cpm-subbuild/cpm-populate-prefix/src/cpm-populate-stamp/cpm-populate-install.rule"
+		},
+		{
+			"file" : "C:/Users/Никита/CLionProjects/strategia/cmake-build-debug/_deps/cpm-subbuild/cpm-populate-prefix/src/cpm-populate-stamp/cpm-populate-mkdir.rule"
+		},
+		{
+			"file" : "C:/Users/Никита/CLionProjects/strategia/cmake-build-debug/_deps/cpm-subbuild/cpm-populate-prefix/src/cpm-populate-stamp/cpm-populate-patch.rule"
+		},
+		{
+			"file" : "C:/Users/Никита/CLionProjects/strategia/cmake-build-debug/_deps/cpm-subbuild/cpm-populate-prefix/src/cpm-populate-stamp/cpm-populate-test.rule"
+		},
+		{
+			"file" : "C:/Users/Никита/CLionProjects/strategia/cmake-build-debug/_deps/cpm-subbuild/cpm-populate-prefix/src/cpm-populate-stamp/cpm-populate-update.rule"
+		}
+	],
+	"target" : 
+	{
+		"labels" : 
+		[
+			"cpm-populate"
+		],
+		"name" : "cpm-populate"
+	}
+}
