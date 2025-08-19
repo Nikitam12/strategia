@@ -1,6 +1,5 @@
 #include "okx_client.hpp"
 #include <nlohmann/json.hpp>
-#include <cpr/cpr.h>
 #include <iostream>
 
 using json = nlohmann::json;
@@ -17,19 +16,24 @@ void OkxClient::set_orderbook_callback(OrderBookCallback cb) { on_orderbook_ = s
 
 void OkxClient::start() {
 	if (running_.exchange(true)) return;
+#ifdef STRATEGIA_ENABLE_WEBSOCKETS
 	ws_ = std::make_unique<ix::WebSocket>();
 	run_ws();
+#endif
 }
 
 void OkxClient::stop() {
 	if (!running_.exchange(false)) return;
+#ifdef STRATEGIA_ENABLE_WEBSOCKETS
 	if (ws_) {
 		ws_->stop();
 		ws_.reset();
 	}
+#endif
 }
 
 void OkxClient::run_ws() {
+#ifdef STRATEGIA_ENABLE_WEBSOCKETS
 	const std::string url = "wss://ws.okx.com:8443/ws/v5/public";
 	ws_->setUrl(url);
 	ws_->setOnMessageCallback([this](const ix::WebSocketMessagePtr &msg) {
@@ -87,6 +91,7 @@ void OkxClient::run_ws() {
 	});
 
 	ws_->start();
+#endif
 }
 
 }

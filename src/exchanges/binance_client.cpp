@@ -1,6 +1,5 @@
 #include "binance_client.hpp"
 #include <nlohmann/json.hpp>
-#include <cpr/cpr.h>
 #include <iostream>
 #include <cctype>
 
@@ -20,19 +19,24 @@ void BinanceClient::set_orderbook_callback(OrderBookCallback cb) { on_orderbook_
 
 void BinanceClient::start() {
 	if (running_.exchange(true)) return;
+#ifdef STRATEGIA_ENABLE_WEBSOCKETS
 	ws_ = std::make_unique<ix::WebSocket>();
 	run_ws();
+#endif
 }
 
 void BinanceClient::stop() {
 	if (!running_.exchange(false)) return;
+#ifdef STRATEGIA_ENABLE_WEBSOCKETS
 	if (ws_) {
 		ws_->stop();
 		ws_.reset();
 	}
+#endif
 }
 
 void BinanceClient::run_ws() {
+#ifdef STRATEGIA_ENABLE_WEBSOCKETS
 	const std::string stream_symbol = to_lower(symbol_);
 	const std::string url = "wss://stream.binance.com:9443/stream?streams=" + stream_symbol + "@ticker/" + stream_symbol + "@depth5@100ms";
 	ws_->setUrl(url);
@@ -86,6 +90,7 @@ void BinanceClient::run_ws() {
 	});
 
 	ws_->start();
+#endif
 }
 
 }

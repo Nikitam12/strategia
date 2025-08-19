@@ -1,19 +1,19 @@
-"C:\Program Files\JetBrains\CLion 2021.3.4\bin\cmake\win\bin\cmake.exe" -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - MinGW Makefiles" C:\Users\Никита\CLionProjects\strategia
-CMake Error: Target DependInfo.cmake file not found
-Creating directories for 'cpm-populate'
-Error creating directory "C:/Users/╨а╤Ь╨а╤С╨а╤Ф╨а╤С╨бтАЪ╨а┬░/CLionProjects/strategia/cmake-build-debug/_deps/cpm-src".
-mingw32-make[2]: *** [CMakeFiles\cpm-populate.dir\build.make:111: cpm-populate-prefix/src/cpm-populate-stamp/cpm-populate-mkdir] Error 1
-mingw32-make[1]: *** [CMakeFiles\Makefile2:82: CMakeFiles/cpm-populate.dir/all] Error 2
-mingw32-make: *** [Makefile:90: all] Error 2
-
-CMake Error at C:/Program Files/JetBrains/CLion 2021.3.4/bin/cmake/win/share/cmake-3.21/Modules/FetchContent.cmake:1017 (message):
-  Build step for cpm failed: 2
-Call Stack (most recent call first):
-  C:/Program Files/JetBrains/CLion 2021.3.4/bin/cmake/win/share/cmake-3.21/Modules/FetchContent.cmake:1146:EVAL:2 (__FetchContent_directPopulate)
-  C:/Program Files/JetBrains/CLion 2021.3.4/bin/cmake/win/share/cmake-3.21/Modules/FetchContent.cmake:1146 (cmake_language)
-  C:/Program Files/JetBrains/CLion 2021.3.4/bin/cmake/win/share/cmake-3.21/Modules/FetchContent.cmake:1189 (FetchContent_Populate)
-  CMakeLists.txt:19 (FetchContent_MakeAvailable)
-
-
--- Configuring incomplete, errors occurred!
-See also "C:/Users/Никита/CLionProjects/strategia/cmake-build-debug/CMakeFiles/CMakeOutput.log".
+/home/mesh/Downloads/clion-2021.3/bin/cmake/linux/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /home/mesh/GIT/strategia
+-- The CXX compiler identification is GNU 9.4.0
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /usr/bin/c++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Looking for C++ include pthread.h
+-- Looking for C++ include pthread.h - found
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Failed
+-- Check if compiler accepts -pthread
+-- Check if compiler accepts -pthread - yes
+-- Found Threads: TRUE  
+-- Found nlohmann_json: /usr/lib/cmake/nlohmann_json/nlohmann_jsonConfig.cmake (found suitable version "3.7.3", minimum required is "3.7") 
+-- Found CURL: /usr/lib/x86_64-linux-gnu/libcurl.so (found version "7.68.0")  
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/mesh/GIT/strategia/cmake-build-debug

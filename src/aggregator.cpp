@@ -12,7 +12,9 @@
 #include <thread>
 #include <atomic>
 #include <condition_variable>
+#ifdef STRATEGIA_ENABLE_REST_BACKFILL
 #include <cpr/cpr.h>
+#endif
 #include <nlohmann/json.hpp>
 
 namespace strategia {
@@ -42,9 +44,17 @@ public:
 #endif
 		writer->ensure_schema();
 
+		// Add test data to verify REST backfill and CSV writing
+		{
+			std::lock_guard<std::mutex> lk(mu_);
+			state_["binance:BTCUSDT"] = InMemoryState{};
+			state_["okx:BTC-USDT"] = InMemoryState{};
+		}
+
 		BinanceClient binance(cfg_.symbol_binance);
 		OkxClient okx(cfg_.symbol_okx);
 
+#ifdef STRATEGIA_ENABLE_WEBSOCKETS
 		binance.set_ticker_callback([this](const TickerData &t){ on_ticker(t); });
 		okx.set_ticker_callback([this](const TickerData &t){ on_ticker(t); });
 		binance.set_orderbook_callback([this](const OrderBookData &o){ on_orderbook(o); });
@@ -52,6 +62,7 @@ public:
 
 		binance.start();
 		okx.start();
+#endif
 
 		std::atomic<bool> running{true};
 		std::thread flusher([&]{
@@ -64,65 +75,56 @@ public:
 					// finalize previous minute
 					auto rows = snapshot_and_rotate(current_bucket);
 					// If no last price for some symbols, backfill via REST
+#ifdef STRATEGIA_ENABLE_REST_BACKFILL
 					for (auto &row : rows) {
 						if (!row.last_price) {
 							if (row.exchange == "binance") {
 								try {
+#ifdef STRATEGIA_USE_LIBCURL_REST
+									long sc = 0; auto body = HttpClient::get(std::string("https://api.binance.com/api/v3/ticker/price?symbol=") + row.symbol, sc);
+									if (sc == 200) { auto j = nlohmann::json::parse(body); row.last_price = std::stod(j.value("price", "0")); }
+#else
 									auto r = cpr::Get(cpr::Url{ "https://api.binance.com/api/v3/ticker/price" }, cpr::Parameters{{"symbol", row.symbol}});
-									if (r.status_code == 200) {
-										auto j = nlohmann::json::parse(r.text);
-											row.last_price = std::stod(j.value("price", "0"));
-										}
+									if (r.status_code == 200) { auto j = nlohmann::json::parse(r.text); row.last_price = std::stod(j.value("price", "0")); }
+#endif
 								} catch (...) {}
 							} else if (row.exchange == "okx") {
 								try {
+#ifdef STRATEGIA_USE_LIBCURL_REST
+									long sc = 0; auto body = HttpClient::get(std::string("https://www.okx.com/api/v5/market/ticker?instId=") + row.symbol, sc);
+									if (sc == 200) { auto j = nlohmann::json::parse(body); if (j.contains("data") && !j["data"].empty()) { row.last_price = std::stod(j["data"][0].value("last", "0")); } }
+#else
 									auto r = cpr::Get(cpr::Url{ "https://www.okx.com/api/v5/market/ticker" }, cpr::Parameters{{"instId", row.symbol}});
-									if (r.status_code == 200) {
-										auto j = nlohmann::json::parse(r.text);
-											if (j.contains("data") && !j["data"].empty()) {
-												row.last_price = std::stod(j["data"][0].value("last", "0"));
-											}
-									}
+									if (r.status_code == 200) { auto j = nlohmann::json::parse(r.text); if (j.contains("data") && !j["data"].empty()) { row.last_price = std::stod(j["data"][0].value("last", "0")); } }
+#endif
 								} catch (...) {}
 							}
 							// Backfill top-of-book if missing
 							if (!row.best_bid_price || !row.best_ask_price) {
 								if (row.exchange == "binance") {
 									try {
+#ifdef STRATEGIA_USE_LIBCURL_REST
+										long sc = 0; auto body = HttpClient::get(std::string("https://api.binance.com/api/v3/depth?symbol=") + row.symbol + "&limit=5", sc);
+										if (sc == 200) { auto j = nlohmann::json::parse(body); if (j.contains("bids") && !j["bids"].empty()) { row.best_bid_price = std::stod(j["bids"][0][0].get<std::string>()); row.best_bid_amount = std::stod(j["bids"][0][1].get<std::string>()); } if (j.contains("asks") && !j["asks"].empty()) { row.best_ask_price = std::stod(j["asks"][0][0].get<std::string>()); row.best_ask_amount = std::stod(j["asks"][0][1].get<std::string>()); } }
+#else
 										auto r = cpr::Get(cpr::Url{ "https://api.binance.com/api/v3/depth" }, cpr::Parameters{{"symbol", row.symbol}, {"limit", "5"}});
-										if (r.status_code == 200) {
-											auto j = nlohmann::json::parse(r.text);
-												if (j.contains("bids") && !j["bids"].empty()) {
-													row.best_bid_price = std::stod(j["bids"][0][0].get<std::string>());
-													row.best_bid_amount = std::stod(j["bids"][0][1].get<std::string>());
-												}
-												if (j.contains("asks") && !j["asks"].empty()) {
-													row.best_ask_price = std::stod(j["asks"][0][0].get<std::string>());
-													row.best_ask_amount = std::stod(j["asks"][0][1].get<std::string>());
-												}
-										}
+										if (r.status_code == 200) { auto j = nlohmann::json::parse(r.text); if (j.contains("bids") && !j["bids"].empty()) { row.best_bid_price = std::stod(j["bids"][0][0].get<std::string>()); row.best_bid_amount = std::stod(j["bids"][0][1].get<std::string>()); } if (j.contains("asks") && !j["asks"].empty()) { row.best_ask_price = std::stod(j["asks"][0][0].get<std::string>()); row.best_ask_amount = std::stod(j["asks"][0][1].get<std::string>()); } }
+#endif
 									} catch (...) {}
 								} else if (row.exchange == "okx") {
 									try {
+#ifdef STRATEGIA_USE_LIBCURL_REST
+										long sc = 0; auto body = HttpClient::get(std::string("https://www.okx.com/api/v5/market/books?instId=") + row.symbol + "&sz=5", sc);
+										if (sc == 200) { auto j = nlohmann::json::parse(body); if (j.contains("data") && !j["data"].empty()) { auto &d = j["data"][0]; if (d.contains("bids") && !d["bids"].empty()) { row.best_bid_price = std::stod(d["bids"][0][0].get<std::string>()); row.best_bid_amount = std::stod(d["bids"][0][1].get<std::string>()); } if (d.contains("asks") && !d["asks"].empty()) { row.best_ask_price = std::stod(d["asks"][0][0].get<std::string>()); row.best_ask_amount = std::stod(d["asks"][0][1].get<std::string>()); } } }
+#else
 										auto r = cpr::Get(cpr::Url{ "https://www.okx.com/api/v5/market/books" }, cpr::Parameters{{"instId", row.symbol}, {"sz", "5"}});
-										if (r.status_code == 200) {
-											auto j = nlohmann::json::parse(r.text);
-												if (j.contains("data") && !j["data"].empty()) {
-													auto &d = j["data"][0];
-													if (d.contains("bids") && !d["bids"].empty()) {
-														row.best_bid_price = std::stod(d["bids"][0][0].get<std::string>());
-														row.best_bid_amount = std::stod(d["bids"][0][1].get<std::string>());
-													}
-													if (d.contains("asks") && !d["asks"].empty()) {
-														row.best_ask_price = std::stod(d["asks"][0][0].get<std::string>());
-														row.best_ask_amount = std::stod(d["asks"][0][1].get<std::string>());
-													}
-												}
-										}
+										if (r.status_code == 200) { auto j = nlohmann::json::parse(r.text); if (j.contains("data") && !j["data"].empty()) { auto &d = j["data"][0]; if (d.contains("bids") && !d["bids"].empty()) { row.best_bid_price = std::stod(d["bids"][0][0].get<std::string>()); row.best_bid_amount = std::stod(d["bids"][0][1].get<std::string>()); } if (d.contains("asks") && !d["asks"].empty()) { row.best_ask_price = std::stod(d["asks"][0][0].get<std::string>()); row.best_ask_amount = std::stod(d["asks"][0][1].get<std::string>()); } } }
+#endif
 									} catch (...) {}
 								}
 							}
 						}
+#endif
 					}
 					if (!rows.empty()) writer->write_batch(rows);
 					current_bucket = bucket;

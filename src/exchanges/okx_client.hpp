@@ -1,7 +1,9 @@
 #pragma once
 
 #include "exchange_client.hpp"
+#ifdef STRATEGIA_ENABLE_WEBSOCKETS
 #include <ixwebsocket/IXWebSocket.h>
+#endif
 #include <atomic>
 #include <memory>
 
@@ -23,7 +25,9 @@ private:
 
 private:
 	std::string symbol_;
+#ifdef STRATEGIA_ENABLE_WEBSOCKETS
 	std::unique_ptr<ix::WebSocket> ws_;
+#endif
 	std::atomic<bool> running_{false};
 	TickerCallback on_ticker_;
 	OrderBookCallback on_orderbook_;

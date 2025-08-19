@@ -1,3 +1,0 @@
-C:/Users/Никита/CLionProjects/strategia/cmake-build-debug/_deps/cpm-subbuild/CMakeFiles/cpm-populate.dir
-C:/Users/Никита/CLionProjects/strategia/cmake-build-debug/_deps/cpm-subbuild/CMakeFiles/edit_cache.dir
-C:/Users/Никита/CLionProjects/strategia/cmake-build-debug/_deps/cpm-subbuild/CMakeFiles/rebuild_cache.dir
