@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="strategia"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;CMake Files\..\;CMake Files\..\..\;CMake Files\..\..\..\;CMake Files\..\..\..\..\;CMake Files\..\..\..\..\usr\;CMake Files\..\..\..\..\usr\lib\;CMake Files\..\..\..\..\usr\lib\cmake\;CMake Files\..\..\..\..\usr\lib\cmake\nlohmann_json\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/home/mesh/GIT/strategia/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/mesh/GIT/strategia/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/mesh/GIT/strategia/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/mesh/GIT/strategia/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/mesh/GIT/strategia/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/home/mesh/GIT/strategia/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/mesh/GIT/strategia/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/mesh/GIT/strategia/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/mesh/GIT/strategia/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/mesh/GIT/strategia/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/home/mesh/GIT/strategia/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/mesh/GIT/strategia/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/mesh/GIT/strategia/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/mesh/GIT/strategia/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/mesh/GIT/strategia/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="strategia">
+				<Option output="/home/mesh/GIT/strategia/cmake-build-debug/strategia" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/mesh/GIT/strategia/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DSTRATEGIA_ENABLE_REST_BACKFILL"/>
+					<Add option="-DSTRATEGIA_USE_LIBCURL_REST"/>
+					<Add directory="/home/mesh/GIT/strategia/src"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/mesh/GIT/strategia/cmake-build-debug/Makefile&quot;  VERBOSE=1 strategia"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/mesh/GIT/strategia/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/mesh/GIT/strategia/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/mesh/GIT/strategia/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="strategia/fast">
+				<Option output="/home/mesh/GIT/strategia/cmake-build-debug/strategia" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/mesh/GIT/strategia/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DSTRATEGIA_ENABLE_REST_BACKFILL"/>
+					<Add option="-DSTRATEGIA_USE_LIBCURL_REST"/>
+					<Add directory="/home/mesh/GIT/strategia/src"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/mesh/GIT/strategia/cmake-build-debug/Makefile&quot;  VERBOSE=1 strategia/fast"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/mesh/GIT/strategia/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/mesh/GIT/strategia/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/mesh/GIT/strategia/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="strategia_lib">
+				<Option output="/home/mesh/GIT/strategia/cmake-build-debug/libstrategia_lib.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/mesh/GIT/strategia/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DSTRATEGIA_ENABLE_REST_BACKFILL"/>
+					<Add option="-DSTRATEGIA_USE_LIBCURL_REST"/>
+					<Add directory="/home/mesh/GIT/strategia/src"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/mesh/GIT/strategia/cmake-build-debug/Makefile&quot;  VERBOSE=1 strategia_lib"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/mesh/GIT/strategia/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/mesh/GIT/strategia/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/mesh/GIT/strategia/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="strategia_lib/fast">
+				<Option output="/home/mesh/GIT/strategia/cmake-build-debug/libstrategia_lib.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/mesh/GIT/strategia/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DSTRATEGIA_ENABLE_REST_BACKFILL"/>
+					<Add option="-DSTRATEGIA_USE_LIBCURL_REST"/>
+					<Add directory="/home/mesh/GIT/strategia/src"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/mesh/GIT/strategia/cmake-build-debug/Makefile&quot;  VERBOSE=1 strategia_lib/fast"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/mesh/GIT/strategia/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/mesh/GIT/strategia/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/mesh/GIT/strategia/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/home/mesh/GIT/strategia/src/aggregator.cpp">
+			<Option target="strategia_lib"/>
+		</Unit>
+		<Unit filename="/home/mesh/GIT/strategia/src/config.hpp">
+			<Option target="strategia_lib"/>
+		</Unit>
+		<Unit filename="/home/mesh/GIT/strategia/src/cpr/cpr.h">
+			<Option target="strategia_lib"/>
+		</Unit>
+		<Unit filename="/home/mesh/GIT/strategia/src/exchanges/binance_client.cpp">
+			<Option target="strategia_lib"/>
+		</Unit>
+		<Unit filename="/home/mesh/GIT/strategia/src/exchanges/binance_client.hpp">
+			<Option target="strategia_lib"/>
+		</Unit>
+		<Unit filename="/home/mesh/GIT/strategia/src/exchanges/exchange_client.hpp">
+			<Option target="strategia_lib"/>
+		</Unit>
+		<Unit filename="/home/mesh/GIT/strategia/src/exchanges/okx_client.cpp">
+			<Option target="strategia_lib"/>
+		</Unit>
+		<Unit filename="/home/mesh/GIT/strategia/src/exchanges/okx_client.hpp">
+			<Option target="strategia_lib"/>
+		</Unit>
+		<Unit filename="/home/mesh/GIT/strategia/src/http/http_client.cpp">
+			<Option target="strategia_lib"/>
+		</Unit>
+		<Unit filename="/home/mesh/GIT/strategia/src/http/http_client.hpp">
+			<Option target="strategia_lib"/>
+		</Unit>
+		<Unit filename="/home/mesh/GIT/strategia/src/main.cpp">
+			<Option target="strategia"/>
+		</Unit>
+		<Unit filename="/home/mesh/GIT/strategia/src/storage/csv_writer.cpp">
+			<Option target="strategia_lib"/>
+		</Unit>
+		<Unit filename="/home/mesh/GIT/strategia/src/storage/csv_writer.hpp">
+			<Option target="strategia_lib"/>
+		</Unit>
+		<Unit filename="/home/mesh/GIT/strategia/src/storage/storage_writer.hpp">
+			<Option target="strategia_lib"/>
+		</Unit>
+		<Unit filename="/home/mesh/GIT/strategia/src/time_utils.hpp">
+			<Option target="strategia_lib"/>
+		</Unit>
+		<Unit filename="/home/mesh/GIT/strategia/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+		<Unit filename="/home/mesh/GIT/strategia/../../../../usr/lib/cmake/nlohmann_json/nlohmann_jsonConfig.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\usr\lib\cmake\nlohmann_json\"/>
+		</Unit>
+		<Unit filename="/home/mesh/GIT/strategia/../../../../usr/lib/cmake/nlohmann_json/nlohmann_jsonConfigVersion.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\usr\lib\cmake\nlohmann_json\"/>
+		</Unit>
+		<Unit filename="/home/mesh/GIT/strategia/../../../../usr/lib/cmake/nlohmann_json/nlohmann_jsonTargets.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\usr\lib\cmake\nlohmann_json\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>

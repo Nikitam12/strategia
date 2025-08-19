@@ -1,0 +1,1 @@
+/usr/bin/c++ -g CMakeFiles/strategia.dir/src/main.cpp.o -o strategia  libstrategia_lib.a -pthread /usr/lib/x86_64-linux-gnu/libcurl.so 

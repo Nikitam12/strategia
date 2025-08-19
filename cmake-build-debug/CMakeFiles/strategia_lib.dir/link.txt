@@ -1,0 +1,2 @@
+/usr/bin/ar qc libstrategia_lib.a CMakeFiles/strategia_lib.dir/src/aggregator.cpp.o CMakeFiles/strategia_lib.dir/src/exchanges/binance_client.cpp.o CMakeFiles/strategia_lib.dir/src/exchanges/okx_client.cpp.o CMakeFiles/strategia_lib.dir/src/storage/csv_writer.cpp.o CMakeFiles/strategia_lib.dir/src/http/http_client.cpp.o
+/usr/bin/ranlib libstrategia_lib.a

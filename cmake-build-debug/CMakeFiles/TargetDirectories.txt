@@ -1,0 +1,4 @@
+/home/mesh/GIT/strategia/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/mesh/GIT/strategia/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/mesh/GIT/strategia/cmake-build-debug/CMakeFiles/strategia.dir
+/home/mesh/GIT/strategia/cmake-build-debug/CMakeFiles/strategia_lib.dir
